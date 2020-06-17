@@ -59,6 +59,11 @@ class CategoryController extends \Admin\Controller
         $category = $combiner->prepare($category);
 
         $params['opts'] = $combiner->getOptions();
+        array_unshift($params['opts']['parent'], (object)[
+            'value' => 0,
+            'label' => 'None',
+            'parent' => 0
+        ]);
 
         if($id){
             // remove self from parent
@@ -72,7 +77,7 @@ class CategoryController extends \Admin\Controller
 
         if(!($valid = $form->validate($category)) || !$form->csrfTest('noob'))
             return $this->resp('product/category/edit', $params);
-
+        
         $valid = $combiner->finalize($valid);
         if(!isset($valid->parent))
             $valid->parent = 0;
@@ -115,8 +120,8 @@ class CategoryController extends \Admin\Controller
 
         $categories = PCategory::get($cond, $rpp, $page, ['name'=>true]) ?? [];
         if($categories)
-            $categories = Formatter::formatMany('product-category', $categories, ['user', 'parent']);
-
+            $categories = Formatter::formatMany('product-category', $categories, ['user','parent']);
+        
         $params               = $this->getParams('Product Category');
         $params['categories'] = $categories;
         $params['form']       = new Form('admin.product-category.index');
