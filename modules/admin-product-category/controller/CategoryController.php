@@ -118,7 +118,7 @@ class CategoryController extends \Admin\Controller
 
         list($page, $rpp) = $this->req->getPager(25, 50);
 
-        $categories = PCategory::get($cond, $rpp, $page, ['name'=>true]) ?? [];
+        $categories = PCategory::get($cond, $rpp, $page, ['parent'=>true,'name'=>true]) ?? [];
         if($categories)
             $categories = Formatter::formatMany('product-category', $categories, ['user','parent']);
         
