@@ -46,6 +46,9 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
+                        <?php if(module_exists('admin-product-category-image')): ?>
+                            <?= $form->field('image'); ?>
+                        <?php endif; ?>
                         <?= $this->partial('site-meta/meta'); ?>
                     </div>
                 </div>
