@@ -2,7 +2,7 @@
 
 return [
     '__name' => 'admin-product-category',
-    '__version' => '0.1.0',
+    '__version' => '0.2.0',
     '__git' => 'git@github.com:getmim/admin-product-category.git',
     '__license' => 'MIT',
     '__author' => [

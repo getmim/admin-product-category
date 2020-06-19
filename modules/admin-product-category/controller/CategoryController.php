@@ -75,6 +75,17 @@ class CategoryController extends \Admin\Controller
             }
         }
 
+        // custom fields
+        $fields = $form->getFields();
+        $params['x_fields'] = [];
+        foreach($fields as $name => $fld){
+            if(!isset($fld->xpos))
+                continue;
+            if(!isset($params['x_fields'][$fld->xpos]))
+                $params['x_fields'][$fld->xpos] = [];
+            $params['x_fields'][$fld->xpos][] = $name;
+        }
+
         if(!($valid = $form->validate($category)) || !$form->csrfTest('noob'))
             return $this->resp('product/category/edit', $params);
         

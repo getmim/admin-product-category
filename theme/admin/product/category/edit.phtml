@@ -40,16 +40,42 @@
                                 <?= $form->field('content'); ?>
                             </div>
                         </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <?php if(isset($x_fields['left-bottom-left'])): ?>
+                                    <?php foreach($x_fields['left-bottom-left'] as $fld): ?>
+                                        <?= $form->field($fld); ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
+                            <div class="col-md-6">
+                                <?php if(isset($x_fields['left-bottom-right'])): ?>
+                                    <?php foreach($x_fields['left-bottom-right'] as $fld): ?>
+                                        <?= $form->field($fld); ?>
+                                    <?php endforeach; ?>
+                                <?php endif; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body">
-                        <?php if(module_exists('admin-product-category-image')): ?>
-                            <?= $form->field('image'); ?>
+                        <?php if(isset($x_fields['right-top'])): ?>
+                            <?php foreach($x_fields['right-top'] as $fld): ?>
+                                <?= $form->field($fld); ?>
+                            <?php endforeach; ?>
                         <?php endif; ?>
+                        
                         <?= $this->partial('site-meta/meta'); ?>
+
+                        <?php if(isset($x_fields['right-bottom'])): ?>
+                            <?php foreach($x_fields['right-bottom'] as $fld): ?>
+                                <?= $form->field($fld); ?>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
